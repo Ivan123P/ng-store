@@ -11,13 +11,13 @@
     </div>
     <div class="col-9 col-md-10">
       <div *ngFor="let product of products" class="card m-2 p-1 bg-light">
-        <h4>
+        <h4 class="clearfix">
           {{ product.name }}
           <span class="badge badge-pill badge-primary float-right">
             {{ product.price }}
           </span>
         </h4>
-        <div class="card-text bg-white p-1">
+        <div class="card-text bg-white p-1 clearfix">
           {{ product.description }}
           <button class="btn btn-success btn-sm float-right">
             Add To Cart
