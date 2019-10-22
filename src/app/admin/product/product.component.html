@@ -1,1 +1,42 @@
-<p>product works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg-dark text-white">
+      <a routerLink="" class="navbar-brand">SPORT-STORE</a>
+      <span class="fa fa-cart-arrow-down"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 col-md-2 p-2">
+      <button routerLink="/admin/products" class="btn btn-block btn-outline-primary">Products</button>
+      <button routerLink="/admin/orders" class="btn btn-block btn-outline-primary">Orders</button>
+      <button routerLink="" class="btn btn-block btn-danger m-t-3">Logout</button>
+    </div>
+    <div class="col-9 col-md-10">
+        <table class="table table-sm table-striped">
+          <thead>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Category</td>
+            <td>Price</td>
+            <td>Controls</td>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.category }}</td>
+              <td>{{ product.price | currency }}</td>
+              <td>
+                <button class="btn btn-warning mr-1"
+                        routerLink="/admin/">Edit</button>
+                <button class="btn btn-danger"
+                        (click)="deleteProduct(product.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary"
+                routerLink="/admin/products/create">Create New Product</button>
+    </div>
+  </div>
+</div>

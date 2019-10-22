@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DbService } from '../../model/db.service';
 import { Product } from '../../model/product.model';
+import { ProductsRepositoryService } from '../../model/products-repository.service';
 
 @Component({
   selector: 'app-store',
@@ -8,16 +8,28 @@ import { Product } from '../../model/product.model';
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
-  public products: Product[] = [];
+  private currentCategory = null;
 
   constructor(
-    private dbService: DbService
+    public productsRepository: ProductsRepositoryService
   ) { }
 
   ngOnInit() {
-    this.dbService.getProducts().subscribe((products: Product[]) => {
-      this.products = products;
-    });
   }
 
+  public addToCart(product: Product): void {
+    console.log(product);
+  }
+
+  public productsByCategory(category: string): void {
+    this.currentCategory = category;
+  }
+
+  public get products(): Product[] {
+    return this.productsRepository.getAllProducts(this.currentCategory);
+  }
+
+  public get categories(): string[] {
+    return this.productsRepository.getCategories();
+  }
 }

@@ -2,24 +2,29 @@
   <div class="row">
     <div class="col bg-dark text-white">
       <a class="navbar-brand">SPORT-STORE</a>
+      <span class="fa fa-cart-arrow-down"></span>
     </div>
   </div>
   <div class="row">
     <div class="col-3 col-md-2 p-2">
-      <button routerLink="" class="btn btn-block btn-outline-primary">Home</button>
-      <button routerLink="/admin/login" class="btn btn-block btn-danger m-t-3">Admin</button>
+      <button routerLink="" class="btn btn-block btn-outline-primary"
+              (click)="productsByCategory(null)">Home</button>
+      <button class="btn btn-block btn-outline-primary" 
+              *ngFor="let category of categories"
+              (click)="productsByCategory(category)">{{ category }}</button>
+      <button routerLink="/admin/products" class="btn btn-block btn-danger m-t-3">Admin</button>
     </div>
     <div class="col-9 col-md-10">
       <div *ngFor="let product of products" class="card m-2 p-1 bg-light">
         <h4 class="clearfix">
           {{ product.name }}
           <span class="badge badge-pill badge-primary float-right">
-            {{ product.price }}
+            {{ product.price | currency }}
           </span>
         </h4>
         <div class="card-text bg-white p-1 clearfix">
           {{ product.description }}
-          <button class="btn btn-success btn-sm float-right">
+          <button class="btn btn-success btn-sm float-right" (click)="addToCart(product)">
             Add To Cart
           </button>
         </div>

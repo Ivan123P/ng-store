@@ -15,4 +15,8 @@ export class DbService {
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:3000/products');
   }
+
+  public deleteProduct(id: number): Observable<any> {
+    return this.http.delete('http://localhost:3000/products/' + id);
+  }
 }
