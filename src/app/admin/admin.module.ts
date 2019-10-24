@@ -5,14 +5,22 @@ import { ProductComponent } from './product/product.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { RouterModule } from '@angular/router';
+import { MainComponent } from './main/main.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, ProductComponent, OrdersComponent, ProductFormComponent],
+  declarations: [
+    MainComponent,
+    LoginComponent,
+    ProductComponent,
+    OrdersComponent,
+    ProductFormComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule.forChild([]),
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

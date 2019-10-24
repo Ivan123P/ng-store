@@ -4,14 +4,21 @@ import { StoreComponent } from './store/store/store.component';
 import { LoginComponent } from './admin/login/login.component';
 import { ProductComponent } from './admin/product/product.component';
 import { OrdersComponent } from './admin/orders/orders.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { MainComponent } from './admin/main/main.component';
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'store'},
   {path: 'store', component: StoreComponent},
   // {path: 'admin/login', component: LoginComponent}
-  {path: 'admin/products', component: ProductComponent},
-  {path: 'admin/orders', component: OrdersComponent}
+  {path: 'admin/home', component: MainComponent, children: [
+    {path: '', pathMatch: 'full', redirectTo: 'products'},
+    {path: 'products', component: ProductComponent},
+    {path: 'products/:mode', component: ProductFormComponent},
+    {path: 'products/:mode/:id', component: ProductFormComponent},
+    {path: 'orders', component: OrdersComponent}
+  ]}
 ];
 
 @NgModule({

@@ -1,0 +1,7 @@
+.store-title {
+  color: #fff;
+  transition: all .2s;
+  &:hover {
+    color: darken(#fff, 10%);
+  }
+}

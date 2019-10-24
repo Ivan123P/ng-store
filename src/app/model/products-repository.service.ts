@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DbService } from './db.service';
 import { Product } from './product.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProductsRepositoryService {
   constructor(
     private dbService: DbService
   ) {
-    this.setProducts();
+    this.getList();
   }
 
   public getAllProducts(category: string | null): Product[] {
@@ -33,13 +34,19 @@ export class ProductsRepositoryService {
 
   public deleteProduct(id: number) {
     this.dbService.deleteProduct(id).subscribe(() => {
-      this.setProducts();
+      this.getList();
     });
   }
 
-  public setProducts(): void {
+  private getList(): void {
     this.dbService.getProducts().subscribe((products: Product[]) => {
       this.products = products;
+    });
+  }
+
+  public createProduct(body: Product): void {
+    this.dbService.addProduct(body).subscribe(() => {
+      this.getList();
     });
   }
 }

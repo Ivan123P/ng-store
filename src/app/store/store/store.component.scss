@@ -1,0 +1,28 @@
+.store {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    &-title {
+      cursor: default;
+    }
+    &-cart {
+      position: relative;
+      &-icon {
+        display: block;
+        width: 25px;
+        height: 25px;
+        color: #fff;
+      }
+      &-info {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+    }
+  }
+}
