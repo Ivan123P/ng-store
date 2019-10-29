@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { ProductsRepositoryService } from '../../model/products-repository.service';
+import { CartService } from '../cart/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-store',
@@ -11,14 +13,17 @@ export class StoreComponent implements OnInit {
   private currentCategory = null;
 
   constructor(
-    public productsRepository: ProductsRepositoryService
+    public productsRepository: ProductsRepositoryService,
+    private cartService: CartService,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
   public addToCart(product: Product): void {
-    console.log(product);
+    this.cartService.addProduct(product);
+    this.router.navigate(['/cart']);
   }
 
   public productsByCategory(category: string): void {

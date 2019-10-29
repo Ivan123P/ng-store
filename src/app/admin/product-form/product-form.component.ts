@@ -10,7 +10,7 @@ import { Product } from '../../model/product.model';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit, OnDestroy {
   public createProductForm: FormGroup | null = null;
 
   public name: FormControl | null = null;
@@ -19,19 +19,19 @@ export class ProductFormComponent implements OnInit {
   public price: FormControl | null = null;
 
   public formErrors = {
-    "name": "",
-    "price": ""
+    name: '',
+    price: ''
   };
 
   public validationMessages = {
-    "name": {
-      "required": "This field is required!",
-      "pattern": "Incorrect name!"
+    name: {
+      required: 'This field is required!',
+      pattern: 'Incorrect name!'
     },
-    "price": {
-      "required": "This field is required!",
-      "min": "You must input positive number!",
-      "minlength": "You must input more then 1 symbols!"
+    price: {
+      required: 'This field is required!',
+      min: 'You must enter number bigger 0!',
+      minLength: 'You must input more then 1 symbols!'
     }
   };
 
@@ -48,7 +48,6 @@ export class ProductFormComponent implements OnInit {
     let product = new Product('', '', '', 0);
 
     if (mode === 'edit') {
-      console.log('mode ', mode);
       const id = +this.activatedRoute.snapshot.params['id'];
       product = this.productRepository.getProductById(id);
     }
@@ -56,7 +55,7 @@ export class ProductFormComponent implements OnInit {
     this.name = new FormControl(product.name, [Validators.required, Validators.pattern(/[a-z0-9]/)]);
     this.category = new FormControl(product.category, Validators.required);
     this.description = new FormControl(product.description);
-    this.price = new FormControl(product.price, [Validators.required, Validators.min(1), Validators.minLength(2)]);
+    this.price = new FormControl(product.price, [Validators.required, Validators.min(1), Validators.minLength(3)]);
 
     this.createProductForm = new FormGroup({
       name: this.name,
@@ -80,7 +79,7 @@ export class ProductFormComponent implements OnInit {
     const form = this.createProductForm;
 
     for(let field in this.formErrors) {
-      this.formErrors[field] = "";
+      this.formErrors[field] = '';
 
       const control = form.get(field);
 
@@ -88,7 +87,7 @@ export class ProductFormComponent implements OnInit {
         const message = this.validationMessages[field];
 
         for(let key in control.errors) {
-          this.formErrors[field] += message[key] + " ";
+          this.formErrors[field] += message[key] + ' ';
         }
       }
     }
