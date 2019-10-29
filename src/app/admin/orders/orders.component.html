@@ -10,7 +10,7 @@
       <td>{{ order.id }}</td>
       <td>
         <ul>
-          <li *ngFor="let cart of order.list">{{ cart.product }}</li>
+          <li *ngFor="let cart of order.list">{{ cart.quantity }} {{ cart.product }} {{ cart.subtotal }}</li>
         </ul>
       </td>
     </tr>
