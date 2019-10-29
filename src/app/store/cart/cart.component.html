@@ -27,12 +27,16 @@
         <tfoot>
           <tr>
             <td class="text-right" colspan="3">Total</td>
-            <td>90</td>
+            <td>{{ cartService.subtotal | currency }}</td>
           </tr>
         </tfoot>
         <tbody>
           <tr *ngFor="let line of cartService.orderLineList">
-            <td>{{ line.quantity }}</td>
+            <td>
+              <span (click)="minus(line)">-</span>
+              {{ line.quantity }}
+              <span (click)="plus(line)">+</span>
+            </td>
             <td>{{ line.product }}</td>
             <td>{{ line.price | currency }}</td>
             <td>{{ line.subtotal | currency }}</td>
@@ -44,8 +48,8 @@
       </table>
     </div>
     <div class="col-12 text-center">
-      <button class="btn btn-primary mr-1">Continue Shopping</button>
-      <button class="btn btn-secondary">Checkout</button>
+      <button routerLink="" class="btn btn-primary mr-1">Continue Shopping</button>
+      <button class="btn btn-secondary" (click)="addOrder(cartService.orderLineList)">Checkout</button>
     </div>
   </div>
 </div>

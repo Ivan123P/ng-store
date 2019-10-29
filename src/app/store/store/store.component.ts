@@ -14,7 +14,7 @@ export class StoreComponent implements OnInit {
 
   constructor(
     public productsRepository: ProductsRepositoryService,
-    private cartService: CartService,
+    public cartService: CartService,
     private router: Router
   ) { }
 

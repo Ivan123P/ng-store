@@ -85,5 +85,68 @@
       "id": 12
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "list": [
+        {
+          "quantity": 1,
+          "product": "Kayak",
+          "price": 275,
+          "subtotal": 275
+        },
+        {
+          "quantity": 1,
+          "product": "Lifejacket",
+          "price": 48.95,
+          "subtotal": 48.95
+        }
+      ],
+      "id": 1
+    },
+    {
+      "list": [
+        {
+          "quantity": 3,
+          "product": "Kayak",
+          "price": 275,
+          "subtotal": 825
+        },
+        {
+          "quantity": 2,
+          "product": "Soccer Ball",
+          "price": 19.5,
+          "subtotal": 39
+        }
+      ],
+      "id": 2
+    },
+    {
+      "list": [
+        {
+          "quantity": 2,
+          "product": "Kayak",
+          "price": 275,
+          "subtotal": 550
+        },
+        {
+          "quantity": 2,
+          "product": "Soccer Ball",
+          "price": 19.5,
+          "subtotal": 39
+        }
+      ],
+      "id": 3
+    },
+    {
+      "list": [
+        {
+          "quantity": 2,
+          "product": "Kayak",
+          "price": 275,
+          "subtotal": 550
+        }
+      ],
+      "id": 4
+    }
+  ]
 }
