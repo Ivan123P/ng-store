@@ -11,6 +11,9 @@ import { Product } from '../../model/product.model';
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
+  private mode: string = '';
+  private id: number = null;
+
   public createProductForm: FormGroup | null = null;
 
   public name: FormControl | null = null;
@@ -44,12 +47,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const mode = this.activatedRoute.snapshot.params['mode'];
+    this.mode = this.activatedRoute.snapshot.params['mode'];
     let product = new Product('', '', '', 0);
 
-    if (mode === 'edit') {
-      const id = +this.activatedRoute.snapshot.params['id'];
-      product = this.productRepository.getProductById(id);
+    if (this.mode === 'edit') {
+      this.id = +this.activatedRoute.snapshot.params['id'];
+      product = this.productRepository.getProductById(this.id);
     }
 
     this.name = new FormControl(product.name, [Validators.required, Validators.pattern(/[a-z0-9]/)]);
@@ -94,8 +97,13 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   public save(): void {
-    if (this.createProductForm.valid) {
+    if (this.createProductForm.valid && this.mode === 'create') {
       this.productRepository.createProduct(this.createProductForm.value);
+      this.router.navigate(['/admin/home/products']);
+    }
+
+    if (this.createProductForm.valid && this.mode === 'edit') {
+      this.productRepository.editProduct(this.createProductForm.value, this.id);
       this.router.navigate(['/admin/home/products']);
     }
   }

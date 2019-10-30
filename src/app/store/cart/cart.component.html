@@ -10,10 +10,10 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      Your Cart
+      <h2 class="text-center mt-3 mb-3">Your Cart</h2>
     </div>
   </div>
-  <div class="row">
+  <div *ngIf="cartService.orderLineList.length > 0" class="row">
     <div class="col-12">
       <table class="table table-striped table-bordered text-center">
         <thead>
@@ -33,9 +33,9 @@
         <tbody>
           <tr *ngFor="let line of cartService.orderLineList">
             <td>
-              <span (click)="minus(line)">-</span>
-              {{ line.quantity }}
-              <span (click)="plus(line)">+</span>
+              <span class="cart__amount-buttons mr-3" (click)="minus(line)">-</span>
+              <span class="cart__amount-value">{{ line.quantity }}</span>
+              <span class="cart__amount-buttons ml-3" (click)="plus(line)">+</span>
             </td>
             <td>{{ line.product }}</td>
             <td>{{ line.price | currency }}</td>
@@ -50,6 +50,12 @@
     <div class="col-12 text-center">
       <button routerLink="" class="btn btn-primary mr-1">Continue Shopping</button>
       <button class="btn btn-secondary" (click)="addOrder(cartService.orderLineList)">Checkout</button>
+    </div>
+  </div>
+  <div *ngIf="cartService.orderLineList.length === 0" class="row">
+    <div class="col text-center">
+      <h1 class="mb-3">Is empty! :(</h1>
+      <button routerLink="" class="btn btn-primary mr-1">Back to store</button>
     </div>
   </div>
 </div>

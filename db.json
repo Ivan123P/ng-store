@@ -1,11 +1,11 @@
 {
   "products": [
     {
-      "id": 1,
       "name": "Kayak",
       "category": "Watersports",
       "description": "A boat for one person",
-      "price": 275
+      "price": 290,
+      "id": 1
     },
     {
       "id": 2,
@@ -29,11 +29,11 @@
       "price": 34.95
     },
     {
-      "id": 5,
       "name": "Stadium",
       "category": "Soccer",
       "description": "Flat-packed 35,000-seat stadium",
-      "price": 79500
+      "price": 7000,
+      "id": 5
     },
     {
       "id": 6,
@@ -64,25 +64,18 @@
       "price": 1200
     },
     {
-      "name": "sony",
-      "category": "phone",
-      "description": "super phone",
-      "price": 1000,
-      "id": 10
-    },
-    {
-      "name": "css",
-      "category": "qwe",
-      "description": "weq",
-      "price": 12,
-      "id": 11
-    },
-    {
       "name": "Unsteady Chai",
       "category": "Chess",
       "description": "Secretly give your opponent a disadvantage",
-      "price": 29.95,
+      "price": 39.95,
       "id": 12
+    },
+    {
+      "name": "Table",
+      "category": "Tennis",
+      "description": "Big table for tennis",
+      "price": 400,
+      "id": 13
     }
   ],
   "orders": [
@@ -147,6 +140,34 @@
         }
       ],
       "id": 4
+    },
+    {
+      "list": [
+        {
+          "quantity": 5,
+          "product": "Kayak",
+          "price": 275,
+          "subtotal": 1375
+        },
+        {
+          "quantity": 2,
+          "product": "Soccer Ball",
+          "price": 19.5,
+          "subtotal": 39
+        }
+      ],
+      "id": 5
+    },
+    {
+      "list": [
+        {
+          "quantity": 4,
+          "product": "Kayak",
+          "price": 290,
+          "subtotal": 1160
+        }
+      ],
+      "id": 6
     }
   ]
 }

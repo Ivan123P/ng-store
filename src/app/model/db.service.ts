@@ -24,6 +24,11 @@ export class DbService {
   public addProduct(body: Product): Observable<Product> {
     return this.http.post<Product>('http://localhost:3000/products', body);
   }
+
+  public editProduct(body: Product, id: number): Observable<Product> {
+    return this.http.put<Product>('http://localhost:3000/products/' + id, body);
+  }
+
   public addOrder(order: OrderLine[]): Observable<any> {
     const body = {
       list: order

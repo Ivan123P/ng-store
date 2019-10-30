@@ -12,45 +12,38 @@ export class CartService {
   constructor( ) { }
 
   public addProduct(product: Product): void {
-    let res = this.orderLineList.find((item) => item.product === product.name);
+    let orderLineExist = this.orderLineList.find((item) => item.product === product.name);
 
-    if (res) {
-      res.quantity = res.quantity + 1;
-      res.subtotal += product.price;
+    if (orderLineExist) {
+      orderLineExist.quantity = orderLineExist.quantity + 1;
+      orderLineExist.subtotal += product.price;
 
       const index = this.orderLineList.findIndex((item) => item.product === product.name);
-      this.orderLineList[index] = res;
+
+      this.orderLineList[index] = orderLineExist;
     } else {
       const order = new OrderLine(
         1, product.name, product.price, product.price * 1
       );
+
       this.orderLineList.push(order);
     }
 
-    this.subtotal = 0;
-    this.orderLineList.forEach((item) => {
-      this.subtotal += item.subtotal;
-    });
+    this.calcSubtotal();
   }
 
   public removeLine(line: OrderLine): void {
     const index = this.orderLineList.findIndex((item) => item.product === line.product);
     this.orderLineList.splice(index, 1);
 
-    this.subtotal = 0;
-    this.orderLineList.forEach((item) => {
-      this.subtotal += item.subtotal;
-    });
+    this.calcSubtotal();
   }
 
   public plus(line: OrderLine): void {
     line.quantity = line.quantity + 1;
     line.subtotal += line.price;
 
-    this.subtotal = 0;
-    this.orderLineList.forEach((item) => {
-      this.subtotal += item.subtotal;
-    });
+    this.calcSubtotal();
   }
 
   public minus(line: OrderLine): void {
@@ -58,15 +51,19 @@ export class CartService {
       line.quantity = line.quantity - 1;
       line.subtotal -= line.price;
 
-      this.subtotal = 0;
-      this.orderLineList.forEach((item) => {
-        this.subtotal += item.subtotal;
-      });
+      this.calcSubtotal();
     }
   }
 
   public clearCart() {
     this.orderLineList = [];
     this.subtotal = 0;
+  }
+
+  private calcSubtotal() {
+    this.subtotal = 0;
+    this.orderLineList.forEach((item) => {
+      this.subtotal += item.subtotal;
+    });
   }
 }

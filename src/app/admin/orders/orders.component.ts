@@ -20,4 +20,11 @@ export class OrdersComponent implements OnInit {
     });
   }
 
+  private orderTotal( order: OrderLine[]): number {
+    let total = 0;
+
+    order.forEach((item) => total += item.subtotal);
+
+    return total;
+  }
 }

@@ -51,6 +51,12 @@ export class ProductsRepositoryService {
     });
   }
 
+  public editProduct(body: Product, id: number): void {
+    this.dbService.editProduct(body, id).subscribe(() => {
+      this.getList();
+    });
+  }
+
   public addOrder(order: OrderLine[]): any {
     this.dbService.addOrder(order).subscribe(() => {});
   }
