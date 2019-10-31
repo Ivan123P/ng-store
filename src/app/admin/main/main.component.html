@@ -12,7 +12,8 @@
     <div class="col-3 col-md-2 p-2">
       <button routerLink="/admin/home/products" class="btn btn-block btn-outline-primary">Products</button>
       <button routerLink="/admin/home/orders" class="btn btn-block btn-outline-primary">Orders</button>
-      <button routerLink="" class="btn btn-block btn-danger m-t-3">Logout</button>
+      <button routerLink="/store" class="btn btn-block btn-outline-primary">To store</button>
+      <button class="btn btn-block btn-danger m-t-3" (click)="logout()">Logout</button>
     </div>
     <div class="col-9 col-md-10">
       <router-outlet></router-outlet>

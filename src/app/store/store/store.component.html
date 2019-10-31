@@ -28,7 +28,14 @@
       <button class="btn btn-block btn-outline-primary" 
               *ngFor="let category of categories"
               (click)="productsByCategory(category)">{{ category }}</button>
-      <button routerLink="/admin/home" class="btn btn-block btn-danger m-t-3">Admin</button>
+      <button routerLink="/admin/login" class="btn btn-block btn-danger m-t-3">Login</button>
+      
+      <button routerLink="/admin/home/products" class="btn btn-block btn-outline-primary">
+        Products
+      </button>
+      <button routerLink="/admin/home/orders" class="btn btn-block btn-outline-primary">
+        Orders
+      </button>
     </div>
     <div class="col-9 col-md-10">
       <div *ngFor="let product of products" class="card m-2 p-1 bg-light">

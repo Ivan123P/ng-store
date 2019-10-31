@@ -7,14 +7,15 @@ import { OrdersComponent } from './admin/orders/orders.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { MainComponent } from './admin/main/main.component';
 import { CartComponent } from './store/cart/cart.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'store'},
   {path: 'store', component: StoreComponent},
   {path: 'cart', component: CartComponent},
-  // {path: 'admin/login', component: LoginComponent}
-  {path: 'admin/home', component: MainComponent, children: [
+  {path: 'admin/login', component: LoginComponent},
+  {path: 'admin/home', component: MainComponent, canActivate: [AuthGuard], children: [
     {path: '', pathMatch: 'full', redirectTo: 'products'},
     {path: 'products', component: ProductComponent},
     {path: 'products/:mode', component: ProductFormComponent},
