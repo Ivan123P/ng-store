@@ -11,7 +11,7 @@
               </svg>
             </span>
             <div *ngIf="cartService.orderLineList.length > 0" class="store__header-cart-info">
-              (<span class="store__header-cart-info-amount">{{ cartService.orderLineList.length }}</span> - 
+              (<span class="store__header-cart-info-amount">{{ cartService.quantity }}</span> - 
               <span class="store__header-cart-info-total">{{ cartService.subtotal | currency }}</span>)
             </div>
           </a>

@@ -7,6 +7,7 @@ import { Product } from '../../model/product.model';
 })
 export class CartService {
   public orderLineList: OrderLine[] = [];
+  public quantity: number = 0;
   public subtotal: number = 0;
 
   constructor( ) { }
@@ -29,6 +30,7 @@ export class CartService {
       this.orderLineList.push(order);
     }
 
+    this.calcQuantity();
     this.calcSubtotal();
   }
 
@@ -36,6 +38,7 @@ export class CartService {
     const index = this.orderLineList.findIndex((item) => item.product === line.product);
     this.orderLineList.splice(index, 1);
 
+    this.calcQuantity();
     this.calcSubtotal();
   }
 
@@ -43,6 +46,10 @@ export class CartService {
     line.quantity = line.quantity + 1;
     line.subtotal += line.price;
 
+    const index = this.orderLineList.findIndex((item) => item.product === line.product);
+
+    this.orderLineList[index] = line;
+    this.calcQuantity();
     this.calcSubtotal();
   }
 
@@ -51,6 +58,10 @@ export class CartService {
       line.quantity = line.quantity - 1;
       line.subtotal -= line.price;
 
+      const index = this.orderLineList.findIndex((item) => item.product === line.product);
+
+      this.orderLineList[index] = line;
+      this.calcQuantity();
       this.calcSubtotal();
     }
   }
@@ -64,6 +75,13 @@ export class CartService {
     this.subtotal = 0;
     this.orderLineList.forEach((item) => {
       this.subtotal += item.subtotal;
+    });
+  }
+
+  private calcQuantity() {
+    this.quantity = 0;
+    this.orderLineList.forEach((item) => {
+      this.quantity += item.quantity;
     });
   }
 }
